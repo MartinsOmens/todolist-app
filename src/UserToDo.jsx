@@ -6,10 +6,23 @@ export const UserToDo = () => {
 
   function addTodo() {
     if (input.trim()) {
-      setTodos([...todos, input]);
+      setTodos([...todos, {text: input, completed: false}]);
     }
     setInput("");
   }
+
+  function deleteTodo(indexToDelete){
+    setTodos(todos.filter((_, index) => index !== indexToDelete));
+  }
+
+  function toggleTodo(index) {
+  setTodos(
+    todos.map((todo, i) =>
+      i === index ? { ...todo, completed: !todo.completed } : todo
+    )
+  );
+}
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-teal-500">
@@ -36,11 +49,17 @@ export const UserToDo = () => {
           {todos.map((todo, index) => (
             <li key={index} className="bg-gray-100 p-4 rounded-lg flex items-center">
 
-            <input type="checkbox" className="mr-4 w-5 h-5 accent-blue-600"/>
+            <input type="checkbox" 
+            checked = {todo.completed}
+            onChange={() => toggleTodo(index)}
+            className="mr-4 w-5 h-5 accent-blue-600"/>
             
-            <span className="flex-grow">{todo}</span>
-            
-            <button className="bg-red-500 p-2 rounded-lg text-white font-bold">DELETE</button>
+            <span 
+            className={`flex-grow ${todo.completed ? "line-through text-gray-400": "todo"}`}>
+                {todo.text}
+            </span>
+
+            <button onClick={() => deleteTodo(index)} className="bg-red-500 p-2 rounded-lg text-white font-bold">DELETE</button>
             </li>
           ))}
         </ul>
