@@ -1,0 +1,27 @@
+ <div className="flex items-center justify-center min-h-screen">
+      <div className="w-64 h-12 bg-white shadow rounded flex items-center justify-center">
+        Centered Box
+      </div>
+    </div>
+
+
+
+
+    const ToDo = () => {
+  return (
+    <div className="flex items-center justify-center min-h-screen">
+        <div className="w-[500px] h-[200px] bg-white rounded-lg shadow flex items-center flex-col p-6">
+            <h1 className="text-2xl font-semibold">REACT TODO LIST ✅</h1>
+            <div>
+                <input 
+                type="text" 
+                placeholder="Add a new todo" 
+                id="" />
+            </div>
+            <div></div>
+        </div>
+    </div>
+  );
+};
+
+export default ToDo;
